@@ -13,12 +13,12 @@
         box-sizing: border-box;
       }
 
-      body {
+      html, body {
+        height: 100%;
         font-family: "Segoe UI", sans-serif;
         background-color: #f5f7fa;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
       }
 
       header {
@@ -26,41 +26,68 @@
         color: white;
         padding: 1rem 2rem;
         text-align: center;
-        font-size: 1.3rem;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
         font-weight: 600;
+        letter-spacing: 0.5px;
       }
 
       .container {
         flex: 1;
         display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 1rem;
+        align-items: stretch;
+        padding: 0.5rem;
       }
 
-      iframe {
+      .iframe-wrapper {
         width: 100%;
-        height: 90vh;
-        border: none;
-        border-radius: 10px;
+        max-width: 1200px;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
       }
 
       footer {
         text-align: center;
-        padding: 1rem;
+        padding: 0.8rem;
         font-size: 0.9rem;
         color: #555;
       }
 
+      /* Responsif untuk HP & Tablet */
       @media (max-width: 768px) {
         header {
           font-size: 1.1rem;
-          padding: 0.8rem;
+          padding: 0.7rem;
         }
 
-        iframe {
-          height: 85vh;
+        .iframe-wrapper {
+          aspect-ratio: 4 / 3;
+          border-radius: 8px;
+        }
+
+        footer {
+          font-size: 0.8rem;
+          padding: 0.5rem;
+        }
+      }
+
+      /* Untuk layar sangat kecil (HP mini) */
+      @media (max-width: 480px) {
+        .iframe-wrapper {
+          aspect-ratio: 1 / 1.2;
         }
       }
     </style>
@@ -70,15 +97,16 @@
     <header>PlayCademy</header>
 
     <div class="container">
-      <iframe
-        src="https://hidayatplaytopia.retool.com/embedded/public/cadbdaa3-05e4-4028-86c6-f70d43616697"
-        allowfullscreen
-      ></iframe>
+      <div class="iframe-wrapper">
+        <iframe
+          src="https://hidayatplaytopia.retool.com/embedded/public/cadbdaa3-05e4-4028-86c6-f70d43616697"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
 
     <footer>
       © 2025 PlayCademy (Amazone & Playtopia Group)
-      Pages
     </footer>
   </body>
 </html>
